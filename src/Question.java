@@ -7,6 +7,7 @@ public class Question implements Complexity, Comparable
 {
    private String question, answer;
    private int complexityLevel;
+   private boolean correct = false;
    //-----------------------------------------------------------------
    //  Sets up the question with a default complexity.
    //-----------------------------------------------------------------
@@ -49,7 +50,11 @@ public class Question implements Complexity, Comparable
    //-----------------------------------------------------------------
    public boolean answerCorrect (String candidateAnswer)
    {
-      return answer.equals(candidateAnswer);
+      correct = answer.equals(candidateAnswer);
+      return correct;
+   }
+   public boolean isCorrect() {
+       return correct;
    }
    //-----------------------------------------------------------------
    //  Returns this question (and its answer) as a string.
