@@ -15,14 +15,23 @@ public class Quiz {
     public void giveQuiz() {
         Scanner s = new Scanner(System.in);
         int amountOfQuestions = 0;
+        Sorts.insertionSort(questions);
         for(Question q : questions) {
             System.out.println("Question " + (amountOfQuestions + 1));
             System.out.println("====================");
+            System.out.println("Complexity: " + q.getComplexity());
             System.out.println(q.getQuestion());
             System.out.print("Enter answer (case insensitive). For true or false, use [T/F]: ");
             String input = s.nextLine().toUpperCase();
-            q.answerCorrect(input);
+            if(!q.answerCorrect(input)) {
+                System.out.println("Incorrect: " + q.getWhy());
+            }
             amountOfQuestions++;
         }
+        int pointsEarned = 0;
+        for(Question q : questions) {
+            if(q.isCorrect()) pointsEarned++;
+        }
+        System.out.println("You got " + pointsEarned + "/" + questions.length + " (" + (int)(((double)pointsEarned / (double)questions.length) * 100.0) + "%)" + " right.");
     }
 }
