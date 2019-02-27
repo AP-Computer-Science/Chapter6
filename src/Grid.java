@@ -1,18 +1,49 @@
+
+import java.util.ArrayList;
+
 public class Grid {
-    private int[][] _grid = null;
-    int _col = 0;
-    int _row = 0;
-    public Grid(int col, int row) {
-        _grid = new int[col][row];
-        _col = col;
-        _row = row;
+    private ShipPart[][] _grid = null;
+    int desX = 0;
+    int desY = 0;
+    private ArrayList<Ship> _ships;
+    private int _shipCount = 0;
+    public Grid(int x, int y) {
+        _grid = new ShipPart[x][y];
+        _ships = new ArrayList<Ship>();
+        for(int fx = 0; fx < _grid.length; fx++) {
+            for(int fy = 0; fy < _grid[0].length; fy++) {
+                _grid[fx][fy] = new ShipPart(new Coordinate(x, y), 'X');
+            }
+        }
+    }
+    public void addShip(Ship _ship) {
+        _ships.add(_ship);
+        _shipCount++;
+    }
+    public char convertNumToLetter(int num) {
+        //A = 65
+        //B = 90
+        return (char)(65 + num);
+    }
+    public int convertCharToNum(char letter) {
+        return letter - 65;
+    }
+    public void strike(Coordinate c) {
+        
     }
     public String toString() {
-        String s = "";
-        for(int r = 0; r < _grid[r].length; r++) {
-            for(int c = r; c < _grid[r].length; c++) {
-                s += _grid[c][r] + "\n";
+        String s = "\t";
+        for(int y2 = 0; y2 < _grid[0].length; y2++)
+        {
+            s += y2 + "\t";
+        }
+        s += "\n\t=================================\n";
+        for(int x = 0; x < _grid.length; x++) {
+            s += convertNumToLetter(x) + ": \t";
+            for(int y = 0; y < _grid[0].length; y++) {
+                s += _grid[x][y] + "\t";
             }
+            s += "\n";
         }
         return s;
     }

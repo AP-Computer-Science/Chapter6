@@ -42,19 +42,19 @@ public class CDCollection {
     public String toString() {
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
-        String report = "******************************************\n";
-        report += "My CD Collection\n\n";
+        String report = "╔═════════════════►════════════════════╕\n";
+        report += " My CD Collection ♪♪♪♪♪♪♪♪♪\n\n";
 
-        report += "Number of CDs: " + count + "\n";
-        report += "Total cost: " + fmt.format(totalCost) + "\n";
-        report += "Average cost: " + fmt.format(totalCost / count);
+        report += " Number of CDs: " + count + "\n";
+        report += " Total cost: " + fmt.format(totalCost) + "\n";
+        report += " Average cost: " + fmt.format(totalCost / count);
 
-        report += "\n\nCD List:\n\n";
+        report += "\n\n CD List:\n\n";
         Sorts.insertionSort(collection);
         for (int cd = 0; cd < count; cd++) {
-            report += collection[cd].toString() + "\n";
+            report += " " + collection[cd].toString() + "\n";
         }
-
+        report += "╚══════════════════════════════════════╛\n";
         return report;
     }
     //-----------------------------------------------------------------
